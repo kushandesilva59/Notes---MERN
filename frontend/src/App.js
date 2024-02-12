@@ -1,13 +1,15 @@
-
-import './App.css';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer'
+import "./App.css";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import LangingPage from "./screens/LandingPage/LangingPage";
 
 function App() {
   return (
     <>
       <Header />
-      <main style={{minHeight: '93vh'}}></main>
+      <main>
+        <LangingPage />
+      </main>
       <Footer />
     </>
   );
