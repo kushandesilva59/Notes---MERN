@@ -2,27 +2,14 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const userRoutes = require('./routes/userRoute')
 
 const app = express();
 dotenv.config();
+app.use(express.json())
 
 const PORT = process.env.PORT || 5000;
 
-// async function connectDB() {
-//   try {
-//     // Connect to MongoDB using Mongoose
-//     await mongoose.connect("mongodb://localhost:27017/MERN-notes", {
-//     //   useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       //   useCreateIndex: true,
-//       //   useFindAndModify: false,
-//     });
-//     console.log("MongoDB connected");
-//   } catch (error) {
-//     console.error("Error connecting to MongoDB:", error.message);
-//     process.exit(1); // Exit the process with an error code
-//   }
-// }
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/MERN-notes", {
@@ -32,15 +19,14 @@ mongoose
     // useFindAndModify: false,
   })
   .then(() => {
-    app.listen(3000, () => {
-      console.log("OK");
-    });
+  
   })
   .catch((err) => {
     console.error(err);
   });
 
-// connectDB(); // Call the connectDB function after defining it
+
+app.use("/api/users", userRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running PORT ${PORT}`);
