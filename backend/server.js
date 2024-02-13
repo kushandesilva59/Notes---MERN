@@ -2,11 +2,15 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const userRoutes = require('./routes/userRoute')
+const userRoutes = require('./routes/userRoute');
+const { notFound, errorhandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 dotenv.config();
 app.use(express.json())
+
+app.use(notFound)
+app.use(errorhandler)
 
 const PORT = process.env.PORT || 5000;
 
