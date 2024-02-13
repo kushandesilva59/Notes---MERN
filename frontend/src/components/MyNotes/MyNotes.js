@@ -21,8 +21,9 @@ const MyNotes = () => {
           Create New Note
         </Button>
       </Link>
-      <Accordion>
-        {notes.map((note) => (
+
+      {notes.map((note) => (
+        <Accordion>
           <Card key={note._id} style={{ margin: 10 }}>
             <Card.Header style={{ display: "flex" }}>
               <span
@@ -35,7 +36,7 @@ const MyNotes = () => {
                   fontSize: 18,
                 }}
               >
-                <Accordion.Header  variant="link" eventKey="0">
+                <Accordion.Header variant="link" eventKey={note._id}>
                   {note.title}
                 </Accordion.Header>
               </span>
@@ -52,7 +53,7 @@ const MyNotes = () => {
               </div>
             </Card.Header>
 
-            <Accordion.Body eventKey="">
+            <Accordion.Body eventKey={note._id}>
               <Card.Body>
                 <h4>
                   <Badge variant="success">Category - {note.category}</Badge>
@@ -64,8 +65,8 @@ const MyNotes = () => {
               </Card.Body>
             </Accordion.Body>
           </Card>
-        ))}
-      </Accordion>
+        </Accordion>
+      ))}
     </MainScreen>
   );
 };
