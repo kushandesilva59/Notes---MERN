@@ -9,8 +9,8 @@ const app = express();
 dotenv.config();
 app.use(express.json())
 
-app.use(notFound)
-app.use(errorhandler)
+// app.use(notFound)
+// app.use(errorhandler)
 
 const PORT = process.env.PORT || 5000;
 

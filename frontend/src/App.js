@@ -13,6 +13,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<LangingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<LangingPage />} />
           <Route path="/mynotes" element={<MyNotes />} />
           <Route path="/test" element={<Test />} />
         </Routes>
