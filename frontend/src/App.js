@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNotes from "./screens/MyNotes/MyNotes";
 import Test from "./components/Test/Test";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
-import LoginScreen from "./screens/LoginScreen/LoginPage";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 function App() {
   return (
