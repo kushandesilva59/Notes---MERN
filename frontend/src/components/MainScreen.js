@@ -2,27 +2,25 @@ import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import './MainScree.css'
 
-const MainScre = ({title, children}) => {
+const MainScreen = ({ title, children }) => {
   return (
-    <div className='mainBack'>
-        <Container>
-            <Row>
-                <div className='page'>
-                    {
-                            title && (<>
-                                <h1 className='heading'>{title}</h1>
-                                <hr/>
-                            </>)
-                    }
+    <div className="mainBack">
+      <Container>
+        <Row>
+          <div className="page">
+            {title && (
+              <>
+                <h1 className="heading">{title}</h1>
+                <hr />
+              </>
+            )}
 
-                    {
-                        children 
-                    }
-                </div>
-            </Row>
-        </Container>
+            {children}
+          </div>
+        </Row>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default MainScre
+export default MainScreen
