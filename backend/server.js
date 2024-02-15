@@ -2,15 +2,22 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const userRoutes = require('./routes/userRoute');
-const { notFound, errorhandler } = require("./middlewares/errorMiddleware");
+
+
+const userRoutes = require("./routes/userRoute");
+const noteRoutes = require("./routes/noteRoute");
+
+
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+
 
 const app = express();
 dotenv.config();
-app.use(express.json())
+app.use(express.json());
 
-// app.use(notFound)
-app.use(errorhandler)
+
+//app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
 
@@ -32,6 +39,8 @@ mongoose
 
 app.use("/api/users", userRoutes)
 
+app.use("/api/notes", noteRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running PORT ${PORT}`);
 });
@@ -40,9 +49,6 @@ app.get("/", (req, res) => {
   res.send("API is running!...");
 });
 
-app.get("/api/notes", (req, res) => {
-  res.json(notes);
-});
 
 app.get("/api/notes/:id", (req, res) => {
   const note = notes.find((n) => n._id === req.params.id);
