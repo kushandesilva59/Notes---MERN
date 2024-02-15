@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainScreen from "../../components/MainScreen";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorMessage from "../../components/ErrorMessage";
 import { set } from "mongoose";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../actions/userActions";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
@@ -19,38 +21,27 @@ const RegisterScreen = () => {
   const [message, setMessage] = useState(false);
   const [picMessage, setPicMessage] = useState(false);
   const [picUrl, setPicUrl] = useState("");
+  const navigater = useNavigate()
 
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch()
+  const userRegister = useSelector((state)=> state.userRegister)
+  const {loading, error, userInfo} = userRegister
+
+  useEffect(()=>{
+    console.log(userInfo)
+    if(userInfo){
+      navigater('/mynotes')
+    }
+  },[userInfo])
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (password != confirmPassword) {
-      setMessage("Passwords Do not Match");
-    } else {
-      setMessage(null);
-
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/api/users",
-          { name, pic, email, password },
-          config
-        );
-
-        setLoading(false);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-      } catch (error) {
-        setError(error.message);
-      }
+    if(password!==confirmPassword){
+      setMessage("Password do not match")
+    }else{
+      dispatch(register(name, email,password,pic))
     }
 
     console.log(picUrl);
