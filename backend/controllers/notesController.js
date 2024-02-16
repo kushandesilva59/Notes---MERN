@@ -55,4 +55,21 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getNotes, createNote, getNoteById, updateNote };
+const deleteNote = asyncHandler(async (req, res) => {
+  const note = await Note.findById(req.params.id)
+
+  if(note.user.toString() !== req.user._id.toString()){
+    res.status(401).json({ message: "You can't perform this action" });
+    throw new Error("You can't perform this action")
+  }
+
+  if(note){
+    await Note.findByIdAndDelete(note.id);
+    res.json({message: "Note removed!..."})
+  }else{
+    res.status(404).json({message: "Note not found"})
+    throw new Error("Note not found")
+  }
+});
+
+module.exports = { getNotes, createNote, getNoteById, updateNote, deleteNote };
