@@ -3,10 +3,8 @@ const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
-
 const userRoutes = require("./routes/userRoute");
 const noteRoutes = require("./routes/noteRoute");
-
 
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
