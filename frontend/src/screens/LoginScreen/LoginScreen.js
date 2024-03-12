@@ -21,10 +21,14 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
-    if(userInfo){
-      navigater('/mynotes')
+    try {
+      if (userInfo) {
+        navigater("/test");
+      }
+    } catch (error) {
+      console.log(error);
     }
-  },[userInfo]);
+  }, [userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

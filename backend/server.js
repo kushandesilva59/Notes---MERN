@@ -7,7 +7,7 @@ const userRoutes = require("./routes/userRoute");
 const noteRoutes = require("./routes/noteRoute");
 
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
-
+const { protect } = require("./middlewares/authMiddleware");
 
 const app = express();
 dotenv.config();
